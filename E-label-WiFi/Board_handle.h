@@ -1,5 +1,13 @@
+#ifndef  _BOARD_HANDLE_H
+#define _BOARD_HANDLE_H
+#endif
+
+/* #ifdef __cplusplus
+extern "C" {
+#endif */
+
 #include <WiFi.h>
-#include "driver/adc.h"
+// #include "driver/adc.h"
 #include <esp_wifi.h>
 #include <esp_bt.h>
 

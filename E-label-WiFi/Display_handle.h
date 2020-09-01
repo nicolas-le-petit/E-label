@@ -1,6 +1,14 @@
 // include library, include base class, make path known
+#ifndef  _DISPLAY_HANDLE_H
+#define _DISPLAY_HANDLE_H
+#endif
+
+/* #ifdef __cplusplus
+extern "C" {
+#endif */
+
 #include <GxEPD.h>
-#include "SD.h"
+// #include "SD.h"
 #include "SPI.h"
 
 #include <GxGDEH0213B72/GxGDEH0213B72.h>
@@ -32,13 +40,13 @@ extern SPIClass sdSPI;
 #define SDCARD_MOSI 15
 #define SDCARD_MISO 2
 
-#define BUTTON_PIN 39
-
 /* #define go_to_home() display.setCursor(0, 0)
 #define cls() display.fillScreen(GxEPD_WHITE) */
 
 bool SD_Card_init();
-void Epaper_init();
+void Epaper_Init();
 byte Epaper_Change_Font_Size(byte fsize);
 void Epaper_Draw_Text(char* str2display, int x, int y);
 void Epaper_Draw_Image(char* str2display, int x, int y);
+// void display_price(const char* item, const char* price, const char* currency, const unsigned char QRcode[]);
+void display_price(String item, String price, String currency, const unsigned char QRcode[]);

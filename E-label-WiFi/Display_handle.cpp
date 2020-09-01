@@ -20,10 +20,27 @@ Change Font size
 // FreeFonts from Adafruit_GFX
 #include <GxEPD.h>
 #include <Arduino.h>
+
 #include <Fonts/FreeMonoBold9pt7b.h>
 #include <Fonts/FreeMonoBold12pt7b.h>
 #include <Fonts/FreeMonoBold18pt7b.h>
 #include <Fonts/FreeMonoBold24pt7b.h>
+#include <Fonts/FreeSerifBoldItalic12pt7b.h>
+
+/* #include <Fonts/FreeSansBold12pt7b.h>
+#include <Fonts/FreeSansBold18pt7b.h>		
+#include <Fonts/FreeSansBold24pt7b.h>		
+#include <Fonts/FreeSansBold9pt7b.h>
+
+#include <Fonts/FreeSerifBold9pt7b.h>
+#include <Fonts/FreeSerifBold12pt7b.h>
+#include <Fonts/FreeSerifBold18pt7b.h>
+#include <Fonts/FreeSerifBold24pt7b.h> */
+
+/* #include <Fonts/FreeSerifBoldItalic9pt7b.h>
+#include <Fonts/FreeSerifBoldItalic12pt7b.h>
+#include <Fonts/FreeSerifBoldItalic18pt7b.h>
+#include <Fonts/FreeSerifBoldItalic24pt7b.h> */
 
 #include "Display_handle.h"
 
@@ -42,16 +59,16 @@ int startX = 0, startY = 0;
 @para : none
 @return: none
  */
-void Epaper_init(){
+void Epaper_Init(){
     SPI.begin(SPI_CLK, SPI_MISO, SPI_MOSI, ELINK_SS);
     display.init(); // enable diagnostic output on Serial
 
     display.setRotation(1);
     display.fillScreen(GxEPD_WHITE);
     display.setTextColor(GxEPD_BLACK);
-    display.setFont(&FreeMonoBold9pt7b);
+    display.setFont(&FreeMonoBold12pt7b);
 
-    display.setCursor(display.width()/2 - 8, display.height());
+    display.setCursor(0, 18);
     display.println(greeting);
     display.update();
     //return;
@@ -80,7 +97,6 @@ byte Epaper_Change_Font_Size(byte fsize){
         default:
             return 0;
     }
-
 }
 
 /*
@@ -117,39 +133,48 @@ void Epaper_Draw_Text_Endl(int x, int y, char* str2display){
 @para : image to display, x, y
 @return: none
  */
-void Epaper_Draw_Image(int x, int y, char* str2display){
-    display.fillScreen(GxEPD_WHITE);
+/* void Epaper_Draw_Image(int x, int y, char* str2display){
+    // display.fillScreen(GxEPD_WHITE);
 
-    // display.drawBitmap(image, startX, startY,  bmpWidth, bmpHeight, GxEPD_BLACK);
+    display.drawBitmap(image, display.width()/2 + 50, display.height()/4 + 15,  76, 76, GxEPD_BLACK);
     
     display.update();
 }
-
+ */
 /*
 @date : 25/08/2020
-@brief: draw bitmap
-@para : image to display, x, y
+@brief: template to display price
+@para : String item, price, note, QRcode
 @return: none
  */
-void Set_Cursor(int x, int y){
-    display.setCursor(x, y);
+// void display_price(const char* item, const char* price, const char* currency, const unsigned char QRcode[]){
+void display_price(String item, String price, String currency, const unsigned char QRcode[]){
+    display.fillScreen(GxEPD_WHITE);
+    display.drawBitmap(QRcode, display.width()/2 + 50, display.height()/4 + 15,  76, 76, GxEPD_BLACK);
 
-    // display.drawBitmap(image, startX, startY,  bmpWidth, bmpHeight, GxEPD_BLACK);
-    
+    display.setCursor(0, 18);
+    display.setFont(&FreeSerifBoldItalic12pt7b);
+    display.println(item);
+
+    display.setCursor(display.width(), 18+30);
+    display.setFont(&FreeMonoBold18pt7b);
+    display.println(price);
+    display.println(currency);
+
     display.update();
 }
-/*
-@date : 16/08/2020
-@brief: init SD card & SPI
-@para :
- */
-bool SD_Card_init(){
-    sdSPI.begin(SDCARD_CLK, SDCARD_MISO, SDCARD_MOSI, SDCARD_SS);// use to save image
+// /*
+// @date : 16/08/2020
+// @brief: init SD card & SPI
+// @para :
+//  */
+// bool SD_Card_init(){
+//     sdSPI.begin(SDCARD_CLK, SDCARD_MISO, SDCARD_MOSI, SDCARD_SS);// use to save image
 
-    if (!SD.begin(SDCARD_SS, sdSPI)) {
-        sdOK = false;
-    } else {
-        sdOK = true;
-    }
-    return sdOK;
-}
+//     if (!SD.begin(SDCARD_SS, sdSPI)) {
+//         sdOK = false;
+//     } else {
+//         sdOK = true;
+//     }
+//     return sdOK;
+// }

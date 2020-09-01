@@ -8,29 +8,26 @@ Reset data to default value
 Show data storaging in EEPROM
  */
 #include "main.h"
+#include "Unit_Test.h"
 
 //const int bmpWidth = 250, bmpHeight = 122;
-//width:150,height:39
-const unsigned char image[] = {};
+
+// const unsigned char image[] = {};
 
 void setup()
 {
     Serial.begin(115200);
-    Serial.println();
-    Serial.println("setup");
+    Serial.println("Ready");
 
-    Epaper_init();
+    EEPROM.begin(EEPROM_SIZE);
+    delay(500);
 
-/*     Serial.println("Display information:");
-    Serial.print("Width: ");
-    Serial.println(display.width());
-    Serial.print("Height: ");
-    Serial.println(display.height()); */
-
-    goToDeepSleep();
+    Epaper_Init();
+    // Core_Task_Init();
 }
 
 
 void loop()
 {
+    Unit_Test_Handle();
 }

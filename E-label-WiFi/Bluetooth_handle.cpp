@@ -6,7 +6,7 @@
 /*
 @Date: 21/08/2020
 @Autor: DungTT
-To handle bluetooth function, including: config
+To handle bluetooth function, use to config ssid, pass, host...
 
 Display name is MAC ID
  */
@@ -19,26 +19,28 @@ Display name is MAC ID
 
 BluetoothSerial SerialBT;
 
+#define _DEBUG_ 1
+
 /*
 @date : 14/08/2020
 @brief: get MAC & convert to string
 @para :
 @return: MAC ID
  */
-static String getMacAddress() {
-  byte mac[6];
-  WiFi.macAddress(mac);
-  String cMac = "";
-  for (int i = 0; i < 6; ++i) {
-    if (mac[i] < 0x10) {
-      cMac += "0";
+String getMacAddress() {
+    byte mac[6];
+    WiFi.macAddress(mac);
+    String cMac = "";
+    for (int i = 0; i < 6; ++i) {
+        if (mac[i] < 0x10) {
+            cMac += "0";
+        }
+        cMac += String(mac[i], HEX);
+        if (i < 5)
+            cMac += ":"; // put : or - if you want byte delimiters
     }
-    cMac += String(mac[i], HEX);
-    if (i < 5)
-      cMac += ":"; // put : or - if you want byte delimiters
-  }
-  cMac.toUpperCase();
-  return cMac;
+    cMac.toUpperCase();
+    return cMac;
 }
 
 /*
@@ -50,6 +52,10 @@ static String getMacAddress() {
 void Bluetooth_Init(){
     String BLT_name = getMacAddress();//
     SerialBT.begin(BLT_name);
+    #if _DEBUG_
+        Serial.print("Bluetooth is ready to pair. Name of device:");
+        Serial.println(BLT_name);
+    #endif
 }
 
 /*
@@ -58,10 +64,10 @@ void Bluetooth_Init(){
 @para : none
 @return: none
  */
-void Bluetooth_End(){
+/* void Bluetooth_End(){
     SerialBT.disconnect();
     SerialBT.end();
-}
+} */
 
 /*
 @date : 21/08/2020
@@ -81,17 +87,24 @@ void Bluetooth_Write(uint8_t* outStr, int size){
 @para : none
 @return: pass-by-refference out string
  */
-void Bluetooth_Read_String(String& outStr){
-    String inStr;
-    // int sizeStr;
-
-    while (!SerialBT.available()){};//wait for Serial available
+bool Bluetooth_Read_String(char terminator, String& inStr){
     
-    inStr += SerialBT.readStringUntil('\n');
+    if (SerialBT.available()){
+        inStr = SerialBT.readStringUntil(terminator);
+        #if _DEBUG_
+            Serial.println("Data received via Bluetooth:");
+            Serial.println(inStr);
+        #endif
+
+        SerialBT.flush();
+        SerialBT.disconnect();
+        SerialBT.end();
+
+        return true;
+    }
+
+    return false;
     // sizeStr++;
-
-    SerialBT.flush();
-
     /* for (int i = 0; i < sizeStr; i++) { 
           outStr += inStr[i]; 
       } */
