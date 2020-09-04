@@ -22,6 +22,7 @@ Tip 6: Add a WiFi connection timeout
 Tip 7: Use RTC memory to reduce WiFi connections
 Tip 8: Use static IP & avoid hostnames
 */
+#define _DEBUG_ 1
 
 #include "Board_handle.h"
 
@@ -32,9 +33,15 @@ Tip 8: Use static IP & avoid hostnames
 @return: none
  */
 
-void goToDeepSleep()
+void goToDeepSleep(int interval)
 {
+    #if _DEBUG_
     Serial.println("Going to sleep...");
+    Serial.print("Wake up after ");
+    Serial.print(interval);
+    Serial.println(" minutes.");
+    #endif
+    
     WiFi.disconnect(true);
     WiFi.mode(WIFI_OFF);
     btStop();
@@ -44,7 +51,7 @@ void goToDeepSleep()
     esp_bt_controller_disable();
 
     // Configure the timer to wake us up!
-    esp_sleep_enable_timer_wakeup(DEEP_SLEEP_TIME * BASE_TIME_MINUTE * BASE_TIME_US);
+    esp_sleep_enable_timer_wakeup((int)(interval * BASE_TIME_MINUTE * BASE_TIME_US));
 
     // Go to sleep! Zzzz
     esp_deep_sleep_start();

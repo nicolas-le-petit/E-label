@@ -6,7 +6,7 @@
 /* #ifdef __cplusplus
 extern "C" {
 #endif */
-
+#include "Config_handle.h"
 #include <GxEPD.h>
 // #include "SD.h"
 #include "SPI.h"
@@ -40,6 +40,8 @@ extern SPIClass sdSPI;
 #define SDCARD_MOSI 15
 #define SDCARD_MISO 2
 
+#define SIZE_QR_CODE 73
+
 /* #define go_to_home() display.setCursor(0, 0)
 #define cls() display.fillScreen(GxEPD_WHITE) */
 
@@ -50,3 +52,7 @@ void Epaper_Draw_Text(char* str2display, int x, int y);
 void Epaper_Draw_Image(char* str2display, int x, int y);
 // void display_price(const char* item, const char* price, const char* currency, const unsigned char QRcode[]);
 void display_price(String item, String price, String currency, const unsigned char QRcode[]);
+
+void Epaper_Display_Error(String error);
+void Epaper_Display_Config_Mode();
+void Epaper_Display_Config_Done();

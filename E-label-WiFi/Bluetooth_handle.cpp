@@ -97,8 +97,8 @@ bool Bluetooth_Read_String(char terminator, String& inStr){
         #endif
 
         SerialBT.flush();
-        SerialBT.disconnect();
-        SerialBT.end();
+        /* SerialBT.disconnect();
+        SerialBT.end(); */
 
         return true;
     }

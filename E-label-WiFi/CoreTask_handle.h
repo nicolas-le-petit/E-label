@@ -25,11 +25,14 @@ enum CoreTask_Mode
     INIT_MODE,
 };
 
+#define TIME_WAKE_UP_INTERVAL_NORMAL 15//in minute
+#define TIME_WAKE_UP_INTERVAL_ERROR 1//in minute
+#define TIME_CHECK_BUTTON_PRESS 2000
+
 #define BUTTON_PIN 39
 
 String Send_Request_to_Server();
-// msg_server_pack parse_data_wifi(WiFiClient client_response, String json);
-msg_server_pack parse_data_wifi(String json);
+bool parse_data_wifi(String json);
 
 int Core_Task_Init();
 int Config_Mode_Handle();

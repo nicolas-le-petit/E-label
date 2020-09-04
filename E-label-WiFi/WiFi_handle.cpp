@@ -38,12 +38,7 @@ bool Wifi_Connect() {
 
     // Make sure that we're actually connected, otherwise go to deep sleep
     if(WiFi.status() != WL_CONNECTED){
-        // Serial.println("FAILED");
-        display.fillScreen(GxEPD_WHITE);
-        display.setCursor(0, 12);
-        display.println("Can not connect to WiFi");
-        display.println("Please config via Bluetooth.");
-        display.print(WiFi.macAddress());  
+        /* Epaper_Display_Error_WiFi(); */
         return false;
         //goToDeepSleep();
     }

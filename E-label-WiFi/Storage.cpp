@@ -82,7 +82,7 @@ int Reset_Data_EEPROM(int startAdd, int size){
     {
         return -1;
     }
-    for (nbbyte = startAdd; nbbyte < size; nbbyte++)
+    for (nbbyte = startAdd; nbbyte < (size+startAdd); nbbyte++)
     {
         EEPROM.write(nbbyte, EEPROM_MASK);
         EEPROM.commit();

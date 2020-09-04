@@ -12,7 +12,7 @@ extern "C" {
 #include <esp_bt.h>
 
 // How many minutes the ESP should sleep
-#define DEEP_SLEEP_TIME 1
+// #define DEEP_SLEEP_TIME 1
 #define BASE_TIME_US 1000000 // base time in us
 #define BASE_TIME_MINUTE 60 //60s in a minute
 
@@ -25,5 +25,5 @@ extern "C" {
 #define BATTERY_METTER_PIN 35
 // #define WIFI_TIMEOUT 15 // 15seconds in milliseconds
 
-void goToDeepSleep();
+void goToDeepSleep(int interval);
 int get_Batery_Value();

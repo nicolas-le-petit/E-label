@@ -9,6 +9,8 @@
 #include <esp_bt.h>
 #include <ArduinoJson.h>
 
+#include <stdint.h>
+
 #define DEEP_SLEEP_TIME 0.5
 #define NUM_SAMPLES 10
 #define BATTERY_METTER_PIN 35
@@ -25,7 +27,7 @@
 
 // int bmpWidth = 120, bmpHeight = 120;
 //width:150,height:39
-const unsigned char image[] = { /* 0X00,0X01,0X4B,0X00,0X4C,0X00, */
+const uint8_t image[] = {
 0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X3F,0XFF,0XF8,0X7C,0X00,0X30,
 0XC7,0XFF,0XFF,0X80,0X7F,0XFF,0XFC,0XFC,0X00,0X39,0XC7,0XFF,0XFF,0X80,0X7F,0XFF,
 0XFC,0XFC,0X00,0X39,0XC7,0XFF,0XFF,0X80,0X70,0X00,0X1C,0X00,0X01,0XC0,0X07,0X00,
@@ -74,14 +76,12 @@ const unsigned char image[] = { /* 0X00,0X01,0X4B,0X00,0X4C,0X00, */
 0X7F,0XFF,0XFC,0XFC,0X0E,0X38,0X3F,0XFF,0XFF,0X80,0X7F,0XFF,0XFC,0XFC,0X0E,0X38,
 0X3F,0XFF,0XFF,0X80,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,
 0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,};
-
 // FreeFonts from Adafruit_GFX
 #include <Fonts/FreeMonoBold9pt7b.h>
 #include <Fonts/FreeMonoBold12pt7b.h>
 #include <Fonts/FreeMonoBold18pt7b.h>
 #include <Fonts/FreeMonoBold24pt7b.h>
 #include <Fonts/Tiny3x3a2pt7b.h>
-
 
 #include <GxIO/GxIO_SPI/GxIO_SPI.h>
 #include <GxIO/GxIO.h>
@@ -109,8 +109,8 @@ GxEPD_Class display(io, /*RST=*/ ELINK_RESET, /*BUSY=*/ ELINK_BUSY);
 SPIClass sdSPI(VSPI);
 
 RTC_DATA_ATTR int bootCount = 0;
-const char* ssid = "HNN_IoT";
-const char* password = "honeynet.vn";
+const char* ssid = "Galaxy A21sF9B1";
+const char* password = "dung01021994";
 
 String g_status_connect;
 String g_item;
@@ -129,11 +129,6 @@ char* price; */
 @return: none
  */
 bool parse_data(WiFiClient client_response, String json) {
-    //  StaticJsonBuffer<1880> jsonBuffer;
-    // DynamicJsonDocument jsonBuffer(1024);
-
-    // JsonObject root_data = jsonBuffer.parseObject(data);
-    // DeserializationError error = deserializeJson(jsonBuffer, root_data);
     DynamicJsonDocument doc(1024);
     // char* json;
     DeserializationError error = deserializeJson(doc, json);
@@ -164,7 +159,7 @@ bool parse_data(WiFiClient client_response, String json) {
  */
 bool Send_Request_to_Server()
 {
-    const char* host = "192.168.99.108";
+    const char* host = "esl.honeynet.vn";
     int httpPort = 80;
     #ifdef _DEBUG_
         Serial.print("connecting to ");
@@ -208,7 +203,11 @@ bool Send_Request_to_Server()
         String line_del = client.readStringUntil('{');//to clear buffer
         line += client.readStringUntil('}') + "}";
         client.flush();
+        Serial.println(line_del);
     }
+    Serial.println("Data received from server");
+    
+    Serial.println(line);
     parse_data(client, line);
 }
 
@@ -251,7 +250,7 @@ void Wifi_Connect(const char * & ssid, const char * & password) {
 }
 
 void display_price(){
-    display.drawBitmap(image, display.width()/2 + 50, display.height()/4 + 15,  76, 76, GxEPD_BLACK);
+    display.drawBitmap(image, display.width()/2 + 50, display.height()/4 + 15,  73, 73, GxEPD_BLACK);
 
     display.setCursor(0, 18);
     display.println(g_item);
@@ -291,6 +290,8 @@ bool check_config_mode(){
     }
     return false;
 }
+
+
 
 void setup()
 {

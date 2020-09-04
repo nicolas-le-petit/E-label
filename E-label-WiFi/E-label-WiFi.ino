@@ -17,17 +17,19 @@ Show data storaging in EEPROM
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("Ready");
+    Serial.println("Set up ok!");
 
     EEPROM.begin(EEPROM_SIZE);
     delay(500);
 
+    pinMode(BUTTON_PIN, INPUT_PULLUP);
+
     Epaper_Init();
-    // Core_Task_Init();
+    Core_Task_Init();
 }
 
 
 void loop()
 {
-    Unit_Test_Handle();
+    // Unit_Test_Handle();
 }
