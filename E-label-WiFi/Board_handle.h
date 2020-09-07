@@ -10,6 +10,7 @@ extern "C" {
 // #include "driver/adc.h"
 #include <esp_wifi.h>
 #include <esp_bt.h>
+#include <stdint.h>
 
 // How many minutes the ESP should sleep
 // #define DEEP_SLEEP_TIME 1
@@ -25,5 +26,5 @@ extern "C" {
 #define BATTERY_METTER_PIN 35
 // #define WIFI_TIMEOUT 15 // 15seconds in milliseconds
 
-void goToDeepSleep(int interval);
+void goToDeepSleep(uint32_t interval);
 int get_Batery_Value();

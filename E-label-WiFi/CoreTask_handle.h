@@ -25,7 +25,7 @@ enum CoreTask_Mode
     INIT_MODE,
 };
 
-#define TIME_WAKE_UP_INTERVAL_NORMAL 15//in minute
+#define TIME_WAKE_UP_INTERVAL_NORMAL 60//in minute
 #define TIME_WAKE_UP_INTERVAL_ERROR 1//in minute
 #define TIME_CHECK_BUTTON_PRESS 2000
 

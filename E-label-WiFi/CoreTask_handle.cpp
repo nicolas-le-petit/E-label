@@ -211,7 +211,7 @@ int Run_Mode_Handle(){
         else{//parse data failed
             #if _DEBUG_
             Serial.println("Parse json failed!");
-            Epaper_Display_Error("Format data failed!");
+            Epaper_Display_Error("No information!");
             goToDeepSleep(TIME_WAKE_UP_INTERVAL_ERROR);
             #endif
         }   
@@ -220,7 +220,7 @@ int Run_Mode_Handle(){
         #if _DEBUG_
             Serial.print("BAD data received: ");
             Serial.println(httpRespond);
-            Epaper_Display_Error("Get data failed!");
+            Epaper_Display_Error("No information!");
             goToDeepSleep(TIME_WAKE_UP_INTERVAL_ERROR);
         #endif
     }
@@ -268,7 +268,7 @@ bool Check_Config_Mode(unsigned long timeout){
 */
 int Config_Mode_Handle(){
     Bluetooth_Init();
-
+    
     while (!SerialBT.available()){};
 
     String incomming_data = "";

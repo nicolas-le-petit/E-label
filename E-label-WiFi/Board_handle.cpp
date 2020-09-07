@@ -33,7 +33,7 @@ Tip 8: Use static IP & avoid hostnames
 @return: none
  */
 
-void goToDeepSleep(int interval)
+void goToDeepSleep(uint32_t interval)
 {
     #if _DEBUG_
     Serial.println("Going to sleep...");
@@ -51,7 +51,7 @@ void goToDeepSleep(int interval)
     esp_bt_controller_disable();
 
     // Configure the timer to wake us up!
-    esp_sleep_enable_timer_wakeup((int)(interval * BASE_TIME_MINUTE * BASE_TIME_US));
+    esp_sleep_enable_timer_wakeup(interval * BASE_TIME_MINUTE * BASE_TIME_US);
 
     // Go to sleep! Zzzz
     esp_deep_sleep_start();

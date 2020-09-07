@@ -382,6 +382,10 @@ void Epaper_Display_Config_Done(){
     display.update();
 }
 
+/* void Parse_String_to_Array(uint8_t** inStr, int max_size){
+    for (int i=0; i<)
+} */
+
 // /*
 // @date : 25/08/2020
 // @brief: template to display bad infor from Server
