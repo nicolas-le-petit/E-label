@@ -5,7 +5,7 @@
 /* #ifdef __cplusplus
 extern "C" {
 #endif */
-
+//maximum sleep 400 days
 #include <WiFi.h>
 // #include "driver/adc.h"
 #include <esp_wifi.h>
@@ -26,5 +26,5 @@ extern "C" {
 #define BATTERY_METTER_PIN 35
 // #define WIFI_TIMEOUT 15 // 15seconds in milliseconds
 
-void goToDeepSleep(uint32_t interval);
+void goToDeepSleep(uint64_t interval);
 int get_Batery_Value();

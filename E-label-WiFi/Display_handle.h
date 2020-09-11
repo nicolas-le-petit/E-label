@@ -51,7 +51,7 @@ byte Epaper_Change_Font_Size(byte fsize);
 void Epaper_Draw_Text(char* str2display, int x, int y);
 void Epaper_Draw_Image(char* str2display, int x, int y);
 // void display_price(const char* item, const char* price, const char* currency, const unsigned char QRcode[]);
-void display_price(String item, String price, String currency, const unsigned char QRcode[]);
+void display_price(String item, String price, String currency, unsigned char QRcode[]);
 
 void Epaper_Display_Error(String error);
 void Epaper_Display_Config_Mode();

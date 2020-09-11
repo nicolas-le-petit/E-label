@@ -22,7 +22,7 @@ Tip 6: Add a WiFi connection timeout
 Tip 7: Use RTC memory to reduce WiFi connections
 Tip 8: Use static IP & avoid hostnames
 */
-#define _DEBUG_ 1
+#define _DEBUG_ 0
 
 #include "Board_handle.h"
 
@@ -33,7 +33,7 @@ Tip 8: Use static IP & avoid hostnames
 @return: none
  */
 
-void goToDeepSleep(uint32_t interval)
+void goToDeepSleep(uint64_t interval)
 {
     #if _DEBUG_
     Serial.println("Going to sleep...");

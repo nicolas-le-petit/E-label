@@ -283,7 +283,7 @@ void Epaper_Draw_Text_Endl(int x, int y, char* str2display){
     display.update();
 } */
 
-void display_price(String item, String price, String currency, const unsigned char QRcode[]){
+void display_price(String item, String price, String currency, unsigned char QRcode[]){
     display.fillScreen(GxEPD_WHITE);
     display.drawBitmap(QRcode, display.width()/2 + 50, display.height()/4 + 19,  SIZE_QR_CODE, SIZE_QR_CODE, GxEPD_BLACK);
 
@@ -382,8 +382,10 @@ void Epaper_Display_Config_Done(){
     display.update();
 }
 
-/* void Parse_String_to_Array(uint8_t** inStr, int max_size){
-    for (int i=0; i<)
+/* void Parse_String_to_Array(uint8_t* outArr[], int max_size){
+    for (int i=0; i<max_size; i++){
+        
+    }
 } */
 
 // /*

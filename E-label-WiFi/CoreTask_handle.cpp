@@ -15,55 +15,7 @@ Display data
 
 #define _DEBUG_ 1
 #define IS_BUTTON_PRESS LOW
-const uint8_t QRcode[] = {0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X3F,0XFF,0XF8,0X7C,0X00,0X30,
-0XC7,0XFF,0XFF,0X80,0X7F,0XFF,0XFC,0XFC,0X00,0X39,0XC7,0XFF,0XFF,0X80,0X7F,0XFF,
-0XFC,0XFC,0X00,0X39,0XC7,0XFF,0XFF,0X80,0X70,0X00,0X1C,0X00,0X01,0XC0,0X07,0X00,
-0X03,0X80,0X70,0X00,0X1C,0X00,0X01,0XC0,0X07,0X00,0X03,0X80,0X70,0X00,0X1C,0X00,
-0X01,0XC0,0X07,0X00,0X03,0X80,0X71,0XFF,0X1C,0XE0,0X7F,0XC6,0X07,0X1F,0XF3,0X80,
-0X71,0XFF,0X1C,0XE0,0X7F,0XC6,0X07,0X1F,0XF3,0X80,0X71,0XFF,0X1C,0XE0,0X7F,0XC6,
-0X07,0X1F,0XF3,0X80,0X71,0XFF,0X1C,0XFC,0X71,0XF8,0X07,0X1F,0XF3,0X80,0X71,0XFF,
-0X1C,0XFC,0X71,0XF8,0X07,0X1F,0XF3,0X80,0X71,0XFF,0X1C,0XFC,0X71,0XF8,0X07,0X1F,
-0XF3,0X80,0X71,0XFF,0X1C,0XFF,0XF1,0XFE,0X07,0X1F,0XF3,0X80,0X71,0XFF,0X1C,0XFF,
-0XF1,0XFE,0X07,0X1F,0XF3,0X80,0X71,0XFF,0X1C,0XFF,0XF1,0XFE,0X07,0X1F,0XF3,0X80,
-0X70,0X00,0X1C,0X1C,0X0E,0X39,0XC7,0X00,0X03,0X80,0X70,0X00,0X1C,0X1C,0X0E,0X39,
-0XC7,0X00,0X03,0X80,0X70,0X00,0X1C,0X1C,0X0E,0X39,0XC7,0X00,0X03,0X80,0X7F,0XFF,
-0XFC,0XE3,0X8E,0X39,0XC7,0XFF,0XFF,0X80,0X7F,0XFF,0XFC,0XE3,0X8E,0X39,0XC7,0XFF,
-0XFF,0X80,0X7F,0XFF,0XFC,0XE3,0X8E,0X39,0XC7,0XFF,0XFF,0X80,0X00,0X00,0X00,0X1C,
-0X70,0X39,0XC0,0X00,0X00,0X00,0X00,0X00,0X00,0X1C,0X70,0X39,0XC0,0X00,0X00,0X00,
-0X00,0X00,0X00,0X1C,0X70,0X39,0XC0,0X00,0X00,0X00,0X7F,0XF8,0X1C,0XE0,0X00,0X00,
-0X38,0X1F,0XF3,0X80,0X7F,0XF8,0X1C,0XE0,0X00,0X00,0X38,0X1F,0XF3,0X80,0X7F,0XF8,
-0X1C,0XE0,0X00,0X00,0X38,0X1F,0XF3,0X80,0X70,0X3F,0X00,0XFC,0X01,0XC1,0XC0,0XE0,
-0X0C,0X00,0X70,0X3F,0X00,0XFC,0X01,0XC1,0XC0,0XE0,0X0C,0X00,0X70,0X3F,0X00,0XFC,
-0X01,0XC1,0XC0,0XE0,0X0C,0X00,0X70,0X07,0X1C,0XE0,0X01,0XC1,0XC7,0X1C,0X00,0X00,
-0X70,0X07,0X1C,0XE0,0X01,0XC1,0XC7,0X1C,0X00,0X00,0X70,0X07,0X00,0XE0,0X7F,0XF8,
-0X3F,0XFF,0XF0,0X00,0X70,0X07,0X00,0XE0,0X7F,0XF8,0X3F,0XFF,0XF0,0X00,0X70,0X07,
-0X00,0XE0,0X7F,0XF8,0X3F,0XFF,0XF0,0X00,0X0E,0X38,0X1F,0XFC,0X70,0X06,0X3F,0X1C,
-0X7F,0X80,0X0E,0X38,0X1F,0XFC,0X70,0X06,0X3F,0X1C,0X7F,0X80,0X0E,0X38,0X1F,0XFC,
-0X70,0X06,0X3F,0X1C,0X7F,0X80,0X01,0XC0,0X03,0X03,0XF1,0XFF,0XFF,0XFC,0X03,0X80,
-0X01,0XC0,0X03,0X03,0XF1,0XFF,0XFF,0XFC,0X03,0X80,0X01,0XC0,0X03,0X03,0XF1,0XFF,
-0XFF,0XFC,0X03,0X80,0X0E,0X07,0XFF,0XFC,0X0E,0X39,0XFF,0X1C,0X7C,0X00,0X0E,0X07,
-0XFF,0XFC,0X0E,0X39,0XFF,0X1C,0X7C,0X00,0X0E,0X07,0XFF,0XFC,0X0E,0X39,0XFF,0X1C,
-0X7C,0X00,0X71,0XF8,0XE3,0X1F,0X8F,0XC1,0XC0,0XFC,0X03,0X80,0X71,0XF8,0XE3,0X1F,
-0X8F,0XC1,0XC0,0XFC,0X03,0X80,0X71,0XF8,0XE3,0X1F,0X8F,0XC1,0XC0,0XFC,0X03,0X80,
-0X01,0XFF,0X1C,0XFC,0X70,0X07,0XFF,0XFF,0XFF,0X80,0X01,0XFF,0X1C,0XFC,0X70,0X07,
-0XFF,0XFF,0XFF,0X80,0X01,0XFF,0X1C,0XFC,0X70,0X07,0XFF,0XFF,0XFF,0X80,0X00,0X00,
-0X00,0XFC,0X0F,0XC1,0XC0,0X1C,0X73,0X80,0X00,0X00,0X00,0XFC,0X0F,0XC1,0XC0,0X1C,
-0X73,0X80,0X00,0X00,0X00,0XFC,0X0F,0XC1,0XC0,0X1C,0X73,0X80,0X7F,0XFF,0XFC,0X1F,
-0XFE,0X01,0XC7,0X1C,0X7F,0X80,0X7F,0XFF,0XFC,0X1F,0XFE,0X01,0XC7,0X1C,0X7F,0X80,
-0X7F,0XFF,0XFC,0X1F,0XFE,0X01,0XC7,0X1C,0X7F,0X80,0X70,0X00,0X1C,0X03,0X8E,0X07,
-0XC0,0X1C,0X0C,0X00,0X70,0X00,0X1C,0X03,0X8E,0X07,0XC0,0X1C,0X0C,0X00,0X70,0X00,
-0X1C,0X03,0X8E,0X07,0XC0,0X1C,0X0C,0X00,0X71,0XFF,0X1C,0X00,0X7F,0XC1,0XFF,0XFF,
-0X8C,0X00,0X71,0XFF,0X1C,0X00,0X7F,0XC1,0XFF,0XFF,0X8C,0X00,0X71,0XFF,0X1C,0XE3,
-0X8F,0XF8,0X3F,0X1F,0XFF,0X80,0X71,0XFF,0X1C,0XE3,0X8F,0XF8,0X3F,0X1F,0XFF,0X80,
-0X71,0XFF,0X1C,0XE3,0X8F,0XF8,0X3F,0X1F,0XFF,0X80,0X71,0XFF,0X1C,0XFF,0XFF,0XC1,
-0XFF,0X1C,0X7C,0X00,0X71,0XFF,0X1C,0XFF,0XFF,0XC1,0XFF,0X1C,0X7C,0X00,0X71,0XFF,
-0X1C,0XFF,0XFF,0XC1,0XFF,0X1C,0X7C,0X00,0X70,0X00,0X1C,0XE0,0X00,0X06,0X38,0X1C,
-0X70,0X00,0X70,0X00,0X1C,0XE0,0X00,0X06,0X38,0X1C,0X70,0X00,0X70,0X00,0X1C,0XE0,
-0X00,0X06,0X38,0X1C,0X70,0X00,0X7F,0XFF,0XFC,0XFC,0X0E,0X38,0X3F,0XFF,0XFF,0X80,
-0X7F,0XFF,0XFC,0XFC,0X0E,0X38,0X3F,0XFF,0XFF,0X80,0X7F,0XFF,0XFC,0XFC,0X0E,0X38,
-0X3F,0XFF,0XFF,0X80,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,
-0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,};
-const char* curr = "VND";
+uint8_t QRcode[QR_CODE_BUFFER];
 static msg_server_pack msg_server;
 /* =========================================RUN MODE============================================ */
 /*
@@ -73,7 +25,7 @@ static msg_server_pack msg_server;
 @return: none
  */
 bool parse_data_wifi(String json) {
-    DynamicJsonDocument doc(1024);
+    DynamicJsonDocument doc(5000);
     // char* json;
     DeserializationError error = deserializeJson(doc, json); 
 
@@ -89,15 +41,39 @@ bool parse_data_wifi(String json) {
     client_response.print("OK"); */
     
     msg_server.status_connect = doc["msg"].as<String>();
-    msg_server.item = doc["name"].as<String>();
+    msg_server.item = doc["item"].as<String>();
     msg_server.price = doc["price"].as<String>();
+    msg_server.currency = doc["currency"].as<String>();
+    msg_server.thisTime = doc["thistime"];
+    msg_server.nextTime = doc["nexttime"];
+    msg_server.QRcode = doc["qrcode"].as<String>();
 
+    //convert QRcode json string -> byte array!!!
+    int counter = 0;
+    int last = 1;
+    for (int i = 1; i < msg_server.QRcode.length(); i++) {
+        if (msg_server.QRcode.substring(i, i+2) == ", ") {
+            QRcode[counter] = msg_server.QRcode.substring(last, i).toInt();
+            i+=2;
+            last = i;          
+            counter++;
+        }
+    }
+    
     #if _DEBUG_
         Serial.println("Parsing json:");
         Serial.println(msg_server.status_connect);
         Serial.println(msg_server.item);
         Serial.println(msg_server.price);
-    #endif
+        Serial.println(msg_server.currency);
+        Serial.println(msg_server.thisTime);
+        Serial.println(msg_server.nextTime);
+        Serial.println("Number of QR code element");
+        Serial.println(counter);
+        for (int i=0; i<QR_CODE_BUFFER; i++){
+            Serial.println(QRcode[i]);}
+        #endif
+    doc.clear();
 
     return true;
 }
@@ -200,13 +176,7 @@ int Run_Mode_Handle(){
 
     if (httpRespond != "{}"){//data feedback ok
         if (parse_data_wifi(httpRespond)){//parse data ok
-            #if _DEBUG_
-                Serial.println("Parse json ok");
-                Serial.println(msg_server.status_connect);
-                Serial.println(msg_server.item);
-                Serial.println(msg_server.price);
-            #endif
-            display_price(msg_server.item, msg_server.price, curr, QRcode);
+            display_price(msg_server.item, msg_server.price, msg_server.currency, QRcode);
         }
         else{//parse data failed
             #if _DEBUG_
@@ -224,7 +194,8 @@ int Run_Mode_Handle(){
             goToDeepSleep(TIME_WAKE_UP_INTERVAL_ERROR);
         #endif
     }
-    goToDeepSleep(TIME_WAKE_UP_INTERVAL_NORMAL);
+    uint64_t time_to_wake_up = (uint64_t)((msg_server.nextTime - msg_server.thisTime)/60);
+    goToDeepSleep(time_to_wake_up);
 }
 
 /* =========================================CONFIG MODE============================================ */

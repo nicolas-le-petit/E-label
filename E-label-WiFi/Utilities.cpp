@@ -24,6 +24,16 @@
 // 	return false;
 // }
 
+// void split_string_to_byte_array(String src, uint8_t* des[]){
+//     String temp[];
+//     // int j = 0;
+//     for (int i=0; i<src.length(); i+=5){
+//         for (int j=0; j<5; j++){
+//             temp[i/5] += src[j];
+//         }
+//     }
+// }
+
 // // void Task_Error_Handler(const char *file, unsigned long line)
 // // {
 // // 	/* debug("Task Error:\nFile: %s\nLine: %d\n", file, line); */

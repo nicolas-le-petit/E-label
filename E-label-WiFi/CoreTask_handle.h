@@ -8,8 +8,12 @@ typedef struct msg_server_pack{
     String status_connect;
     String item;
     String price;
+    String currency;
     String note;
-    // const unsigned char QRcode[];
+    int thisTime;
+    int nextTime;
+    String QRcode;
+    // byte QRcode[];
 };
 #endif
 
@@ -25,11 +29,12 @@ enum CoreTask_Mode
     INIT_MODE,
 };
 
-#define TIME_WAKE_UP_INTERVAL_NORMAL 60//in minute
+#define TIME_WAKE_UP_INTERVAL_NORMAL 60//in minute -> maximum sleep 400 days (uint64_t)
 #define TIME_WAKE_UP_INTERVAL_ERROR 1//in minute
 #define TIME_CHECK_BUTTON_PRESS 2000
 
 #define BUTTON_PIN 39
+#define QR_CODE_BUFFER 730
 
 String Send_Request_to_Server();
 bool parse_data_wifi(String json);
